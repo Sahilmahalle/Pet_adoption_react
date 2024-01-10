@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import useBreedList from "./useBreedList";
 import Results from "./Results";
 const ANIMALS = ["Bird", "Reptile", "Dog", "Cat"];
@@ -10,9 +9,11 @@ const SearchParams = () => {
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal);
+
   useEffect(() => {
     requestPets();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   async function requestPets() {
     const res = await fetch(
       `http://pets-v2.dev-apis.com/pets?animal=${animal}&locaton=${location}&breed=${breed}`
@@ -49,7 +50,9 @@ const SearchParams = () => {
             }}
           >
             {ANIMALS.map((animal) => (
-              <option key={animal}>{animal}</option>
+              <option key={animal} value={animal}>
+                {animal}
+              </option>
             ))}
           </select>
         </label>
@@ -60,11 +63,13 @@ const SearchParams = () => {
             disabled={breeds.length === 0}
             value={breed}
             onChange={(e) => {
-              setBreed(e.target.avlue);
+              setBreed(e.target.value);
             }}
           >
             {breeds.map((breed) => (
-              <option key={breed}>{breed}</option>
+              <option key={breed} value={breed}>
+                {breed}
+              </option>
             ))}
           </select>
         </label>

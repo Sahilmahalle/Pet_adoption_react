@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-const Pet = ({ name, animal, breed, images, location, id }) => {
+const Pet = (properties) => {
+  const { name, animal, breed, images, location, id } = properties;
   let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
-  if (images.lenght) {
+  if (images.length) {
     hero = images[0];
   }
   return (
