@@ -7,7 +7,7 @@ const fetchBreedList = async ({ queryKey }) => {
   );
 
   if (!apiRes.ok) {
-    throw new Error(`breeds/${animal} fetch not ok`);
+    throw new Error(`breeds ${animal} fetch not ok`);
   }
 
   return apiRes.json();

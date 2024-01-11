@@ -18,7 +18,7 @@ const App = () => {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <header>
-          <Link to="/">Adopt Me</Link>
+          <Link to="/">Adopt Me!</Link>
         </header>
         <Routes>
           <Route path="/details/:id" element={<Details />} />
