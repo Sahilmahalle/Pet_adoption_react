@@ -7,7 +7,7 @@ class ErrorBoundary extends Component {
     return { hasError: true };
   }
 
-  componentDidCache(error, info) {
+  componentDidCatch(error, info) {
     //typically you would log this to something like track js or NewRelic
     console.error("errorBoundary component cought an error", error, info);
   }
