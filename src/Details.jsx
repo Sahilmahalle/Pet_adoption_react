@@ -17,8 +17,8 @@ const Details = () => {
 
   if (results.isLoading) {
     return (
-      <div className="loading-pane">
-        <h2 className="loader">🌀</h2>
+      <div className="flex h-screen items-center justify-center">
+        <h2 className="loader text-4xl">🌀</h2>
       </div>
     );
   }
@@ -26,18 +26,20 @@ const Details = () => {
   const pet = results.data.pets[0];
 
   return (
-    <div className="details">
+    <div className="details grid-col-1 grid gap-8 p-8 md:grid-cols-2">
       <Carousel images={pet.images} />
       <div>
-        <h1>{pet.name}</h1>
-        <h2>{`${pet.animal} — ${pet.breed} — ${pet.city}, ${pet.state}`}</h2>
+        <h1 className="mb-4 text-3xl font-bold">{pet.name}</h1>
+        <h2 className="mb-2 text-xl text-gray-600">{`${pet.animal} — ${pet.breed} — ${pet.city}, ${pet.state}`}</h2>
         <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
-        <p>{pet.description}</p>
+        <p className="mb-4 text-lg leading-relaxed">{pet.description}</p>
         {showModal ? (
           <Modal>
-            <div>
-              <h1>Would you like to adopt {pet.name}?</h1>
-              <div className="buttons">
+            <div className="flex flex-col items-center">
+              <h1 className="mb-4 text-2xl font-bold">
+                Would you like to adopt {pet.name}?
+              </h1>
+              <div className="buttons flex">
                 <button
                   onClick={() => {
                     setAdoptedPet(pet);
