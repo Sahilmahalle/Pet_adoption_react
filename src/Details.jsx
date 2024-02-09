@@ -1,11 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useContext, useState , lazy  
+} from "react";
 import AdoptedPetContext from "./AdoptedPetContext";
-import Modal from "./Modal";
+
 import ErrorBoundary from "./ErrorBoundary";
 import fetchPet from "./fetchPet";
 import Carousel from "./Carousel";
+
+const Modal =lazy(()=>import("./Modal"));
 
 const Details = () => {
   const { id } = useParams();
@@ -31,7 +34,12 @@ const Details = () => {
       <div>
         <h1 className="mb-4 text-3xl font-bold">{pet.name}</h1>
         <h2 className="mb-2 text-xl text-gray-600">{`${pet.animal} — ${pet.breed} — ${pet.city}, ${pet.state}`}</h2>
-        <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
+        <button
+          className="mr-2 rounded-md bg-orange-500 px-4 py-2 text-white"
+          onClick={() => setShowModal(true)}
+        >
+          Adopt {pet.name}
+        </button>
         <p className="mb-4 text-lg leading-relaxed">{pet.description}</p>
         {showModal ? (
           <Modal>
@@ -41,6 +49,7 @@ const Details = () => {
               </h1>
               <div className="buttons flex">
                 <button
+                  className="mr-2 rounded-md bg-green-500 px-4 py-2 text-white"
                   onClick={() => {
                     setAdoptedPet(pet);
                     navigate("/");
@@ -48,7 +57,12 @@ const Details = () => {
                 >
                   Yes
                 </button>
-                <button onClick={() => setShowModal(false)}>No</button>
+                <button
+                  className="rounded-md bg-red-500 px-4 py-2 text-white"
+                  onClick={() => setShowModal(false)}
+                >
+                  No
+                </button>
               </div>
             </div>
           </Modal>
